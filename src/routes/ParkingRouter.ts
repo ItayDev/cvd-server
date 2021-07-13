@@ -12,7 +12,7 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.post('/accidant', async (req, res, next) => {
+router.post('/accident', async (req, res, next) => {
     try {
         await saveParking(req.body.date, req.body.lon, req.body.lat, false);
         res.status(200).send();
