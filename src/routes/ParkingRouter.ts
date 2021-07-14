@@ -3,6 +3,10 @@ import {Router} from 'express';
 
 const router = Router();
 
+router.get('/isAlive', async (req, res, next) => {
+    res.status(200).send("gooooood!");
+})
+
 router.post('/', async (req, res, next) => {
     try {
         await saveParking(req.body.date, req.body.lon, req.body.lon, true);

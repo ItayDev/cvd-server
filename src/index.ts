@@ -16,16 +16,19 @@ app.use((err,req,res,next) => {
     res.status(500).send("Internal server error");
 })
 
-
-mongoose.connect("some-connection-string");
-
-connection.on('open', () => {
-    console.info('Connected to mogodb server...')
-    app.listen(LISTEN_PORT, () => {
-        console.info(`Server running on port ${LISTEN_PORT}`);
-    })
+app.listen(LISTEN_PORT, () => {
+    console.info(`Server running on port ${LISTEN_PORT}`);
 })
 
-connection.on('error', () => {
-    console.error('Failed to connect to a mongodb server. Aborting...');
-})
+// mongoose.connect("some-connection-string");
+
+// connection.on('open', () => {
+//     console.info('Connected to mogodb server...')
+//     app.listen(LISTEN_PORT, () => {
+//         console.info(`Server running on port ${LISTEN_PORT}`);
+//     })
+// })
+
+// connection.on('error', () => {
+//     console.error('Failed to connect to a mongodb server. Aborting...');
+// })
