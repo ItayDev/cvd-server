@@ -29,7 +29,7 @@ router.get('/accident', async (req, res, next) => {
 
 router.post('/isSafe', async (req, res, next) => {
     try {
-        const isSafe = await isParkingSpotSafe(req.body.date, req.body.lon, req.body.lat);
+        const isSafe = await isParkingSpotSafe(new Date(), req.body.lon, req.body.lat);
         res.status(200).send(isSafe);
     } catch (e) {
         next(e);
