@@ -6,16 +6,19 @@ const router = Router();
 
 router.get('/isAlive', async (req, res, next) => {
     res.status(200).send("gooooood!");
-})
+});
 
 router.get('/parking', async (req, res, next) => {
     try {
-        await saveParking(req.body.date, req.body.lon, req.body.lon, ParkType.SAFE);
-        res.status(200).send();
+        const now = new Date();
+        const {lon, lat}: Partial<{lon: number, lat: number}> = req.query;
+        await saveParking(now, lon, lat, ParkType.SAFE);
+        const isSafe = await isParkingSpotSafe(now, lon, lat);
+        res.status(200).send(isSafe);
     } catch (e) {
         next(e);
     }
-})
+});
 
 router.get('/accident', async (req, res, next) => {
     try {
@@ -25,15 +28,15 @@ router.get('/accident', async (req, res, next) => {
     } catch (e) {
         next(e);
     }
-})
+});
 
-router.post('/isSafe', async (req, res, next) => {
+router.get('/isSafe', async (req, res, next) => {
     try {
         const isSafe = await isParkingSpotSafe(new Date(), req.body.lon, req.body.lat);
         res.status(200).send(isSafe);
     } catch (e) {
         next(e);
     }
-})
+});
 
 export default router;
