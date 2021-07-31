@@ -8,21 +8,20 @@ router.get('/isAlive', async (req, res, next) => {
     res.status(200).send("gooooood!");
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/parking', async (req, res, next) => {
     try {
-        const now = new Date();
-        await saveParking(now, req.body.lon, req.body.lon, ParkType.SAFE);
-        const isSafe = await isParkingSpotSafe(now, req.body.lon, req.body.lat);
-        res.status(200).send(isSafe);
+        await saveParking(req.body.date, req.body.lon, req.body.lon, ParkType.SAFE);
+        res.status(200).send();
     } catch (e) {
         next(e);
     }
 })
 
-router.post('/accident', async (req, res, next) => {
+router.get('/accident', async (req, res, next) => {
     try {
-        await saveParking(new Date(), req.body.lon, req.body.lat, ParkType.ACCIDANT);
-        res.status(200).send();
+        const {lon, lat}: Partial<{lon: number, lat: number}> = req.query;
+        await saveParking(new Date(), lon, lat, ParkType.ACCIDENT);
+        res.status(200).send("accident saved");
     } catch (e) {
         next(e);
     }
