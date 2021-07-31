@@ -5,12 +5,12 @@ import ParkEventModel, { ParkType } from '../models/ParkEvent';
 const NUM_OF_EDGES = 32;
 const RADIUS = 20;
 
-export const saveParking = (date: Date, lon: number, lat: number, isSafe: boolean) => {
+export const saveParking = (date: Date, lon: number, lat: number, type: ParkType) => {
     const location: Point = {type: 'Point', coordinates: [lon, lat]};
     const event = new ParkEventModel({
         date,
         location,
-        type: isSafe? ParkType.SAFE : ParkType.ACCIDANT
+        type,
     });
     return event.save();
 }
