@@ -20,7 +20,7 @@ export const isParkingSpotSafe = async (date: Date, lon: number, lat: number) =>
     const expandedParkingSpot = circleToPolygon([lon, lat], RADIUS, NUM_OF_EDGES);
     const hits = await ParkEventModel.find({
         type: {
-            $eq: ParkType.ACCIDANT
+            $eq: ParkType.ACCIDENT
         },
         date: {
             $gte: date

@@ -8,7 +8,7 @@ export interface ParkEvent {
 
 export enum ParkType {
     SAFE="SAFE",
-    ACCIDANT="ACCIDANT"
+    ACCIDENT="ACCIDENT"
 }
 
 const pointSchema = new Schema<Point>({
@@ -35,7 +35,7 @@ const parkEventSchema = new Schema<ParkEvent>({
     },
     type: {
         type: String,
-        enum: [ParkType.SAFE, ParkType.ACCIDANT]
+        enum: [ParkType.SAFE, ParkType.ACCIDENT]
     }
 });
-export default model<ParkEvent>('ParkEvent', parkEventSchema);
+export default model<ParkEvent>('Parkings', parkEventSchema);
