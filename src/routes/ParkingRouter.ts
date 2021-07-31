@@ -4,10 +4,6 @@ import { ParkType } from '../models/ParkEvent';
 
 const router = Router();
 
-router.get('/isAlive', async (req, res, next) => {
-    res.status(200).send("gooooood!");
-});
-
 router.get('/parking', async (req, res, next) => {
     try {
         const now = new Date();
