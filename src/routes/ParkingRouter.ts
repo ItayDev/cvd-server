@@ -8,7 +8,7 @@ router.get('/parking', async (req, res, next) => {
     try {
         const now = new Date();
         const {lon, lat}: Partial<{lon: number, lat: number}> = req.query;
-        await saveParking(now, lon, lat, ParkType.SAFE);
+        await saveParking(now, lon, lat, ParkType.PARKING);
         const isSafe = await isParkingSpotSafe(now, Number(lon), Number(lat));
         res.status(200).send(isSafe);
     } catch (e) {
