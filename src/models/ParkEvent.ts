@@ -7,7 +7,7 @@ export interface ParkEvent {
 }
 
 export enum ParkType {
-    SAFE="SAFE",
+    PARKING="PARKING",
     ACCIDENT="ACCIDENT"
 }
 
@@ -35,7 +35,7 @@ const parkEventSchema = new Schema<ParkEvent>({
     },
     type: {
         type: String,
-        enum: [ParkType.SAFE, ParkType.ACCIDENT]
+        enum: [ParkType.PARKING, ParkType.ACCIDENT]
     }
 });
 export default model<ParkEvent>('Parkings', parkEventSchema);
